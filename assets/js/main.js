@@ -1,21 +1,24 @@
-let x = 0;
+
+function convertPokemonTypestoLi(pokemonTypes) {
+    return pokemonTypes.map((typeSlot) => `<li class="type">${typeSlot.type.name}</li> `)
+}
+
 function convertPokemonToListHtml(pokemon) {
-    x += 1;
+    
     return `
     <li class="pokemon">
-        <span class="number">#00${x}</span>
+        <span class="number">#${pokemon.id.toString().padStart(3,0)}</span>
         <span class="name">${pokemon.name}</span>
 
         <div class="details">
             <ol class="types">
-                <li class="type">grass</li>
-                <li class="type">poison</li>
+                ${convertPokemonTypestoLi(pokemon.types).join(' ')}
             </ol>
-        <img class="imgPokemon" src="./assets/img/${pokemon.name}.webp" alt="${pokemon.name}">
+        <img class="imgPokemon" src="${pokemon.sprites.other.dream_world.front_default}">
     </li> `
 }
 
-//get content ol id
+//get ol for id.
 const oLpokemons = document.getElementById('oLpokemons');
 
 /* Continuation of the method "getPokemons".
@@ -25,14 +28,18 @@ pokerApi.getPokemons().then((pokemonList = []) => {
     //Receive pokemons list (li) as html
     const newList = pokemonList.map((pokemon) => convertPokemonToListHtml(pokemon));
 
+    // Create div
     const div = document.createElement('div');
-
+    
+    // Convert pokemon list to string
     const newHtml = newList.join('');
 
+    // puts the converted string (html) inside the div
     div.innerHTML = newHtml;
 
-    [...div.children].forEach((element) => {
-        oLpokemons.append(element)
+    // take each child of the div and add it to oLpokemons.
+    [...div.children].forEach((li) => {
+        oLpokemons.append(li)
     });
 })
 

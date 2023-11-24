@@ -1,5 +1,5 @@
 
-// OBJETO
+// Object
 const pokerApi = {}
 
 pokerApi.getPokemonsDetails = (pokemon) => {
@@ -7,14 +7,15 @@ pokerApi.getPokemonsDetails = (pokemon) => {
             .then((responsePokemonUrl) => responsePokemonUrl.json())
 }
 
-//Consumo da API, converte em JSON e retorna o atributo results.  
-pokerApi.getPokemons = (offset = 0, limit = 7) => {
+/*  Method object "pokerApi" for consume API.
+    Get pokemon list (results).
+*/  
+pokerApi.getPokemons = (offset = 0, limit = 10) => {
     const url = `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`;
     return fetch(url)
         .then((response) => response.json())
         .then((responseJson) => responseJson.results)
         .then((pokemonsList) => pokemonsList.map(pokerApi.getPokemonsDetails))
         .then((pokemonDetailsJson) => Promise.all(pokemonDetailsJson))
-        .then((pokemonDetails) => pokemonDetails)
         .catch(console.error);
 };
