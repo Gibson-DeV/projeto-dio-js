@@ -8,7 +8,7 @@ pokerApi.getPokemonsDetails = (pokemon) => {
 }
 
 //Consumo da API, converte em JSON e retorna o atributo results.  
-pokerApi.getPokemons = (offset = 0, limit = 5) => {
+pokerApi.getPokemons = (offset = 0, limit = 7) => {
     const url = `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`;
     return fetch(url)
         .then((response) => response.json())
