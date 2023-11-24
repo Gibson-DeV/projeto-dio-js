@@ -1,9 +1,9 @@
-
+let x = 0;
 function convertPokemonToListHtml(pokemon) {
-    
+    x += 1;
     return `
     <li class="pokemon">
-        <span class="number">#001</span>
+        <span class="number">#00${x}</span>
         <span class="name">${pokemon.name}</span>
 
         <div class="details">
@@ -24,11 +24,11 @@ pokerApi.getPokemons().then((pokemonList = []) => {
 
     //Receive pokemons list (li) as html
     const newList = pokemonList.map((pokemon) => convertPokemonToListHtml(pokemon));
-    
+
     const div = document.createElement('div');
 
     const newHtml = newList.join('');
-    
+
     div.innerHTML = newHtml;
 
     [...div.children].forEach((element) => {
