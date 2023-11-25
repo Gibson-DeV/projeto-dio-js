@@ -4,6 +4,22 @@
   font-family: "Roboto", sans-serif;
 }
 
+
+.grass{
+  background-color: aquamarine;
+}
+.fire{
+  background-color: rgb(240, 153, 87);
+}
+.water{
+  background-color: rgb(78, 158, 233);
+}
+.bug{
+  background-color: rgb(184, 148, 217);
+}
+.normal{
+  background-color: #FFF;
+}
 .content {
   
   background-color: rgb(177, 177, 177);
@@ -29,7 +45,6 @@
   min-width: 190px;
   margin: 0.5rem;
   padding: 1rem;
-  background-color: rgb(145, 234, 200);
   border-radius: 15px;
   border: solid 1px;
   height: 9rem;
