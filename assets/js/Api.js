@@ -1,5 +1,4 @@
 
-
 const pokerApi = {}
 
 function createPokemon (pokemons) {
@@ -12,9 +11,7 @@ function createPokemon (pokemons) {
     return pokemon
 }
 
-
 pokerApi.getPokemonsDetails = (pokemons) => {
-
     const url = pokemons.url
     
     return fetch(url)
@@ -23,7 +20,6 @@ pokerApi.getPokemonsDetails = (pokemons) => {
 }
 
 pokerApi.getPokemonsApi = (offset = 0, limit = 5) => {
-
     const url = `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`;   
 
     return fetch(url)

@@ -20,6 +20,13 @@
 .normal{
   background-color: #FFF;
 }
+.poison{
+  background-color: rgb(184, 148, 217);
+}
+.electric{
+  background-color: rgb(251, 251, 129);
+}
+
 .content {
   
   background-color: rgb(177, 177, 177);
@@ -30,6 +37,7 @@
 .content h1 {
   margin: auto;
   text-align: center;
+  color: rgb(156, 72, 235)
 }
 
 .content .listPokemons {
@@ -38,17 +46,32 @@
   justify-content: center;
   flex-wrap: wrap;
 }
+.pagination{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 1rem;
+}
+.pagination button {
+  color: #FFF;
+  background-color: rgb(156, 72, 235);
+  border-color: black;
+  border-radius: 1rem;
+  padding: 5px;
+  font-size: 1rem;
+}
 
 .pokemon {
   display: flex;
   flex-direction: column;
-  min-width: 190px;
   margin: 0.5rem;
   padding: 1rem;
   border-radius: 15px;
   border: solid 1px;
   height: 9rem;
-  max-width: 190px;
+  width: 14rem;
 }
 
 .pokemon .number {
@@ -58,6 +81,7 @@
 .pokemon .details {
   display: flex;
   flex-direction: row;
+  justify-content: center;
 }
 
 .pokemon .name {

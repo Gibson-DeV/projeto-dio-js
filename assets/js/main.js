@@ -1,5 +1,6 @@
 
-
+var offset = 0;
+const limit = 5;
 
 function convertPokemonToHtmlLi(pokemon){
     return `
@@ -13,13 +14,26 @@ function convertPokemonToHtmlLi(pokemon){
             </ol>
         <img class="imgPokemon" src="${pokemon.photo}">
     </li> `
-
 }
+const oLpokemons = document.getElementById('oLpokemons');
+const loadMoreButton = document.getElementById('loadMoreButton');
 
-const oLpokemons = document.getElementById('oLpokemon');
+loadMoreButton.addEventListener('click', () => {
+    offset += limit;  
+     if(offset === 15){
+        loadPokemon(offset, limit);
+        const maxOffset = 20;
+        const maxLimit = 1
+        loadPokemon(maxOffset,maxLimit);
+        loadMoreButton.parentElement.removeChild(loadMoreButton);
+        
+     }else{
+        loadPokemon(offset, limit);
+     }
+});
 
 pokerApi.getPokemonsApi()
-    .then((pokemonList = []) => pokemonList.map((pokemon) => convertPokemonToHtmlLi(pokemon)))
+    .then((pokemonList = []) => pokemonList.map(convertPokemonToHtmlLi))
     .then((pokemonLi) => {
         const newList = pokemonLi;
         newList.join(' ');
@@ -27,9 +41,21 @@ pokerApi.getPokemonsApi()
         const div = document.createElement('div');
         div.innerHTML = newHtml;
         [...div.children].forEach((li) => oLpokemons.append(li));
-        
-        
     })
+
+function loadPokemon (offset, limit){
+    pokerApi.getPokemonsApi(offset, limit)
+    // .then((pokemons = []) => pokemons.map((pokemon) => convertPokemonToHtmlLi(pokemon)))
+    .then((pokemons = []) => pokemons.map(convertPokemonToHtmlLi))
+    .then((pokemonsLi) => {
+        const newListLi = pokemonsLi;
+        const newHtmlLi = newListLi.join('');
+        const div = document.createElement('div');
+        div.innerHTML = newHtmlLi;
+        [... div.children].forEach((item) => oLpokemons.append(item));
+    })
+
+}
 
 
 
